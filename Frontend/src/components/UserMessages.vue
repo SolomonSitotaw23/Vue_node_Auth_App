@@ -12,5 +12,13 @@
   </div>
 </template>
 <script setup>
-const Messages = ["hi", "hello", "itsWorking"];
+import { onMounted, ref } from "vue";
+import axios from "axios";
+const Messages = ref([]);
+
+onMounted(async () => {
+  Messages.value = (await axios.get("http://localhost:3000/messages")).data;
+  console.log();
+  // console.log(Messages);
+});
 </script>
